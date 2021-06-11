@@ -3,7 +3,7 @@ require 'date'
 class Enigma
 
 def encrypt(message, key = @generator.key, date = Date.new)
-  outgoing_hash = {message: message, key: key, date:, date}
+  outgoing_hash = {message: message, key: key, date: date}
   #returns a hash with the encrypted message, key, and date provided.
   hash = {encryption: message.encrypted, key: key, date: date}
 end
