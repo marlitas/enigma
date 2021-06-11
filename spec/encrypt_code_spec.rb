@@ -24,6 +24,6 @@ RSpec.describe EncryptCode do
   end
 
   xit 'can iterate through message to create encryption' do
-    expect(@encrypt.encrypt_message(message, shift)).to eq('amyfplzxwfst')
+    expect(@encrypt.encrypt_message('marla schulz', {A: 15, B: 39, C: 61, D: 75})).to eq('amyfplzxwfst')
   end
 end
