@@ -52,4 +52,10 @@ RSpec.describe Generator do
 
     expect(@generator.encrypt_code({message: 'hello world', key: '02715', date: '040895'})).to eq({encryption: 'keder ohulw', key: '02715', date: '040895'})
   end
+
+  it 'can output hash with decryption' do
+    expect(@generator.decrypt_code({cipher: 'amyfplzxwfst', key: '13574', date: '061021'})).to eq({decryption: 'marla schulz', key: '13574', date: '061021'})
+
+    expect(@generator.decrypt_code({cipher: 'keder ohulw', key: '02715', date: '040895'})).to eq({decryption: 'hello world', key: '02715', date: '040895'})
+  end
 end
