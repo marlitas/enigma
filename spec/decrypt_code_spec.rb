@@ -3,11 +3,11 @@ require './lib/decrypt_code'
 require './lib/generator'
 require './lib/enigma'
 
-RSpec.describe EncryptCode do
+RSpec.describe DecryptCode do
   before(:each) do
     @generator = Generator.new
     @enigma = Enigma.new
-    @decrypt = EncryptCode.new(@generator)
+    @decrypt = DecryptCode.new(@generator)
   end
 
   it 'exists' do
