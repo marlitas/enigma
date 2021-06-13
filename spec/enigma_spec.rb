@@ -24,4 +24,8 @@ RSpec.describe Enigma do
     expect(@enigma.decrypt('keder ohulw', '02715', '040895')).to eq({decryption: 'hello world', key: '02715', date: '040895'})
   end
 
+  it 'can provide a date in the proper format' do
+    expect(@enigma.date_convert(Date.parse('2021-06-13'))).to eq('130621')
+    expect(@enigma.date_convert('040895')).to eq('040895')
+  end
 end
