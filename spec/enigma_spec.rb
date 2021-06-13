@@ -9,11 +9,11 @@ RSpec.describe Enigma do
   end
 
   it 'exists' do
-    expect(@enigma).to be_a Enigma
+    expect(@enigma).to be_a(Enigma)
   end
 
   it 'has attributes' do
-    expect(@engima.generator).to be_a(Generator)
+    expect(@enigma.generator).to be_a(Generator)
   end
 
   it 'can encrypt' do
