@@ -1,14 +1,14 @@
 require 'date'
-# require './lib/encrypt_code'
-# require './lib./decrypt_code'
+require './lib/encrypt_code'
+require './lib/decrypt_code'
 # require './lib/enigma'
 
 class Generator
-  attr_reader :character_set
+  attr_reader :character_set, :encrypt, :decrypt
   def initialize
     @character_set = ("a".."z").to_a << " "
-    # @encrypt = EncryptCode.new(self)
-    # @decrypt = EncryptCode.new(self)
+    @encrypt = EncryptCode.new(self)
+    @decrypt = DecryptCode.new(self)
     # @enigma = Enigma.new(self)
   end
 
