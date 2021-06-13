@@ -6,7 +6,7 @@ require './lib/enigma'
 RSpec.describe DecryptCode do
   before(:each) do
     @generator = Generator.new
-    @enigma = Enigma.new
+    @enigma = Enigma.new(@generator)
     @decrypt = DecryptCode.new(@generator)
   end
 
