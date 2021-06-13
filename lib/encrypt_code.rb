@@ -35,4 +35,6 @@ class EncryptCode
     end
     encrypted_array.join
   end
+
+  
 end
