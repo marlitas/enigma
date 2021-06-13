@@ -16,7 +16,7 @@ RSpec.describe EncryptCode do
 
   it 'has attributes' do
     expect(@encrypt.generator).to be_a(Generator)
-    expect(@encrypt.group_counter).to eq(0)
+    expect(@encrypt.round_counter).to eq(0)
   end
 
   it 'can return modulo of shift values' do
@@ -24,6 +24,6 @@ RSpec.describe EncryptCode do
   end
 
   it 'can iterate through message to create encryption' do
-    expect(@encrypt.encrypt_message('marla schulz', {A: 15, B: 39, C: 61, D: 75})).to eq('amyfplzxwfst')
+    expect(@encrypt.encrypt_message('marla schulz', @encrypt.shift_modulo({A: 15, B: 39, C: 61, D: 75}))).to eq('amyfplzxwfst')
   end
 end
