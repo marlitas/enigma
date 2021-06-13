@@ -58,4 +58,12 @@ RSpec.describe Generator do
 
     expect(@generator.decrypt_code({cipher: 'keder ohulw', key: '02715', date: '040895'})).to eq({decryption: 'hello world', key: '02715', date: '040895'})
   end
+
+  it 'can create a date in the proper format' do
+    expect(@generator.create_date).to be_a(String)
+    expect(@generator.create_date.length).to eq(6)
+
+    allow(Date).to receive(:today).and_return(Date.parse('2021-06-13'))
+    expect(@generator.create_date).to eq('130621')
+  end
 end
