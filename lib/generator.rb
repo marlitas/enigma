@@ -50,4 +50,8 @@ class Generator
   def decrypt_code(incoming_hash)
     {decryption: @decrypt.decrypt_message(incoming_hash[:cipher],  @encrypt.shift_modulo(shift(incoming_hash))), key: incoming_hash[:key], date: incoming_hash[:date]}
   end
+
+  def create_date
+    Date.today.strftime('%d%m%y')
+  end
 end

@@ -16,11 +16,5 @@ class Enigma
     @generator.decrypt_code(outgoing_hash)
   end
 
-  def date_convert(date)
-    if date.class == Date
-      date.strftime('%d%m%y')
-    else
-      date
-    end
-  end
+  
 end
