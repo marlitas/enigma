@@ -16,7 +16,6 @@ class EncryptCode
 
   def encrypt_message(message, shift)
     message_array = message.split("")
-    @generator.character_set
     encrypted_array = []
     round_counter = 0
     until round_counter == message.length
@@ -35,6 +34,4 @@ class EncryptCode
     end
     encrypted_array.join
   end
-
-  
 end
