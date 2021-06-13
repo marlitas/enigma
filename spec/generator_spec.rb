@@ -14,11 +14,11 @@ RSpec.describe Generator do
     expect(@generator.character_set).to eq(['a', 'b', 'c', 'd', "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "])
   end
 
-  xit 'can create encrypt' do
+  it 'can create encrypt' do
     expect(@generator.encrypt).to be_a(EncryptCode)
   end
 
-  xit 'can create decrypt' do
+  it 'can create decrypt' do
     expect(@generator.decrypt).to be_a(DecryptCode)
   end
 
