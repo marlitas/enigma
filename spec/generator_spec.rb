@@ -22,7 +22,7 @@ RSpec.describe Generator do
     expect(@generator.decrypt).to be_a(DecryptCode)
   end
 
-  xit 'can create enigma' do
+  it 'can create enigma' do
     expect(@generator.enigma).to be_a(Enigma)
   end
 
@@ -47,4 +47,23 @@ RSpec.describe Generator do
     expect(@generator.shift({message: 'marla schulz', key: '13574', date: '061021'})).to eq({A: 15, B: 39, C: 61, D: 75})
   end
 
+  it 'can output hash with encryption' do
+    expect(@generator.encrypt_code({message: 'marla schulz', key: '13574', date: '061021'})).to eq({encryption: 'amyfplzxwfst', key: '13574', date: '061021'})
+
+    expect(@generator.encrypt_code({message: 'hello world', key: '02715', date: '040895'})).to eq({encryption: 'keder ohulw', key: '02715', date: '040895'})
+  end
+
+  it 'can output hash with decryption' do
+    expect(@generator.decrypt_code({cipher: 'amyfplzxwfst', key: '13574', date: '061021'})).to eq({decryption: 'marla schulz', key: '13574', date: '061021'})
+
+    expect(@generator.decrypt_code({cipher: 'keder ohulw', key: '02715', date: '040895'})).to eq({decryption: 'hello world', key: '02715', date: '040895'})
+  end
+
+  it 'can create a date in the proper format' do
+    expect(@generator.create_date).to be_a(String)
+    expect(@generator.create_date.length).to eq(6)
+
+    allow(Date).to receive(:today).and_return(Date.parse('2021-06-13'))
+    expect(@generator.create_date).to eq('130621')
+  end
 end
