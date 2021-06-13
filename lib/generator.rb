@@ -1,15 +1,15 @@
 require 'date'
 require './lib/encrypt_code'
 require './lib/decrypt_code'
-# require './lib/enigma'
+require './lib/enigma'
 
 class Generator
-  attr_reader :character_set, :encrypt, :decrypt
+  attr_reader :character_set, :encrypt, :decrypt, :enigma
   def initialize
     @character_set = ("a".."z").to_a << " "
     @encrypt = EncryptCode.new(self)
     @decrypt = DecryptCode.new(self)
-    # @enigma = Enigma.new(self)
+    @enigma = Enigma.new(self)
   end
 
   def key
@@ -41,5 +41,9 @@ class Generator
       array.sum
     end
     Hash[grouped_key.keys.zip(summed_num)]
+  end
+
+  def encrypt_code(incoming_hash)
+    {encryption: @encrypt.encrypt_message(incoming_hash[:message],  @encrypt.shift_modulo(shift(incoming_hash))), key: incoming_hash[:key], date: incoming_hash[:date]}
   end
 end
