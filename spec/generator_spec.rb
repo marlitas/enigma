@@ -22,7 +22,7 @@ RSpec.describe Generator do
     expect(@generator.decrypt).to be_a(DecryptCode)
   end
 
-  xit 'can create enigma' do
+  it 'can create enigma' do
     expect(@generator.enigma).to be_a(Enigma)
   end
 
@@ -48,7 +48,7 @@ RSpec.describe Generator do
   end
 
   it 'can output hash with encryption' do
-    expect(@generator.encrypt_code({message: 'marla schulz', key: '13574', date: '061021'})).to eq({encryption: 'marla schulz', key: '13574', date: '061021'})
+    expect(@generator.encrypt_code({message: 'marla schulz', key: '13574', date: '061021'})).to eq({encryption: 'amyfplzxwfst', key: '13574', date: '061021'})
 
     expect(@generator.encrypt_code({message: 'hello world', key: '02715', date: '040895'})).to eq({encryption: 'keder ohulw', key: '02715', date: '040895'})
   end
