@@ -46,4 +46,8 @@ class Generator
   def encrypt_code(incoming_hash)
     {encryption: @encrypt.encrypt_message(incoming_hash[:message],  @encrypt.shift_modulo(shift(incoming_hash))), key: incoming_hash[:key], date: incoming_hash[:date]}
   end
+
+  def decrypt_code(incoming_hash)
+    {decryption: @decrypt.decrypt_message(incoming_hash[:cipher],  @encrypt.shift_modulo(shift(incoming_hash))), key: incoming_hash[:key], date: incoming_hash[:date]}
+  end
 end
