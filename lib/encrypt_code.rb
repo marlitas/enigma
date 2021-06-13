@@ -1,8 +1,8 @@
 class EncryptCode
-  attr_reader :generator, :group_counter
+  attr_reader :generator, :round_counter
   def initialize (generator)
     @generator = generator
-    @group_counter = 0
+    @round_counter = 0
   end
 
   def shift_modulo(shift)
@@ -19,16 +19,17 @@ class EncryptCode
     message_array = message.split("")
     @generator.character_set
     encrypted_array = []
-    message_array.each do |character|
+
+    until @round_counter == message.length
       shift.each do |key, value|
-        require "pry"; binding.pry
         if value == 27
-          encrypted_array << character
-        elsif (@generator.character_set.index(character) + value) > 26
-          encrypted_array << @generator.character_set[(@generator.character_set.index(character) + value) - 27]
+          encrypted_array << message_array[@round_counter]
+        elsif (@generator.character_set.index(message_array[@round_counter]) + value) > 26
+          encrypted_array << @generator.character_set[(@generator.character_set.index(message_array[@round_counter]) + value) - 27]
         else
-          encrypted_array << @generator.character_set[@generator.character_set.index(character) + value]
+          encrypted_array << @generator.character_set[@generator.character_set.index(message_array[@round_counter]) + value]
         end
+        @round_counter += 1
       end
     end
     encrypted_array.join
