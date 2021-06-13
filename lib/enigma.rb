@@ -6,15 +6,13 @@ class Enigma
     @generator = generator
   end
 
-  def encrypt(message, key = @generator.key, date = Date.new)
-    outgoing_hash = {message: message, key: key, date: date_convert(date)}
+  def encrypt(message, key = @generator.key, date = @generator.create_date)
+    outgoing_hash = {message: message, key: key, date: date}
     @generator.encrypt_code(outgoing_hash)
   end
 
-  def decrypt(cipher, key, date = Date.new)
-    outgoing_hash = {cipher: cipher, key: key, date: date_convert(date)}
+  def decrypt(cipher, key, date = @generator.create_date)
+    outgoing_hash = {cipher: cipher, key: key, date: date}
     @generator.decrypt_code(outgoing_hash)
   end
-
-  
 end
