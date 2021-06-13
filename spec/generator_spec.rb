@@ -47,4 +47,9 @@ RSpec.describe Generator do
     expect(@generator.shift({message: 'marla schulz', key: '13574', date: '061021'})).to eq({A: 15, B: 39, C: 61, D: 75})
   end
 
+  it 'can output hash with encryption' do
+    expect(@generator.encrypt_code({message: 'marla schulz', key: '13574', date: '061021'})).to eq({encryption: 'marla schulz', key: '13574', date: '061021'})
+
+    expect(@generator.encrypt_code({message: 'hello world', key: '02715', date: '040895'})).to eq({encryption: 'keder ohulw', key: '02715', date: '040895'})
+  end
 end
