@@ -12,7 +12,7 @@ class Enigma
   end
 
   def decrypt(cipher, key, date = Date.new)
-    #returns a hash with the decrypted message, key, and date provided.
-    hash = {decryption: cipher.decrypted, key: key, date: date}
+    outgoing_hash = {cipher: cipher, key: key, date: date}
+    @generator.decrypt_code(outgoing_hash)
   end
 end
