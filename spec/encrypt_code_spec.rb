@@ -26,4 +26,9 @@ RSpec.describe EncryptCode do
     expect(@encrypt.encrypt_message('marla schulz', @encrypt.shift_modulo({A: 15, B: 39, C: 61, D: 75}))).to eq('amyfplzxwfst')
     expect(@encrypt.encrypt_message('hello world',@encrypt.shift_modulo({A: 3, B: 27, C: 73, D: 20}) )).to eq('keder ohulw')
   end
+
+  it 'can iterate through message to create encryption, refactor' do
+    expect(@encrypt.encrypt_message_refactor('marla schulz', @encrypt.shift_modulo({A: 15, B: 39, C: 61, D: 75}))).to eq('amyfplzxwfst')
+    expect(@encrypt.encrypt_message_refactor('hello world',@encrypt.shift_modulo({A: 3, B: 27, C: 73, D: 20}) )).to eq('keder ohulw')
+  end
 end
