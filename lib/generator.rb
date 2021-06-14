@@ -1,15 +1,16 @@
 require 'date'
-require './lib/encrypt_code'
-require './lib/decrypt_code'
+require './lib/cipher'
 require './lib/enigma'
 
 class Generator
-  attr_reader :character_set, :encrypt, :decrypt, :enigma
+  attr_reader :character_set, :cipher
   def initialize
     @character_set = ("a".."z").to_a << " "
-    @encrypt = EncryptCode.new(self)
-    @decrypt = DecryptCode.new(self)
-    @enigma = Enigma.new(self)
+    @cipher = Cipher.new(self)
+  end
+
+  def create_enigma
+    Enigma.new(self)
   end
 
   def key
@@ -43,12 +44,12 @@ class Generator
     Hash[grouped_key.keys.zip(summed_num)]
   end
 
-  def encrypt_code(incoming_hash)
-    {encryption: @encrypt.encrypt_message(incoming_hash[:message],  @encrypt.shift_modulo(shift(incoming_hash))), key: incoming_hash[:key], date: incoming_hash[:date]}
+  def encrypt(incoming_hash)
+    {encryption: @cipher.encrypt(incoming_hash[:message], shift(incoming_hash)), key: incoming_hash[:key], date: incoming_hash[:date]}
   end
 
-  def decrypt_code(incoming_hash)
-    {decryption: @decrypt.decrypt_message(incoming_hash[:cipher],  @encrypt.shift_modulo(shift(incoming_hash))), key: incoming_hash[:key], date: incoming_hash[:date]}
+  def decrypt(incoming_hash)
+    {decryption: @cipher.decrypt(incoming_hash[:cipher], shift(incoming_hash)), key: incoming_hash[:key], date: incoming_hash[:date]}
   end
 
   def create_date
