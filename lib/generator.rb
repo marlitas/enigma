@@ -4,12 +4,15 @@ require './lib/decrypt_code'
 require './lib/enigma'
 
 class Generator
-  attr_reader :character_set, :encrypt, :decrypt, :enigma
+  attr_reader :character_set, :encrypt, :decrypt
   def initialize
     @character_set = ("a".."z").to_a << " "
     @encrypt = EncryptCode.new(self)
     @decrypt = DecryptCode.new(self)
-    @enigma = Enigma.new(self)
+  end
+
+  def create_enigma
+    Enigma.new(self)
   end
 
   def key

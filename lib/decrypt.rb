@@ -1,5 +1,6 @@
 require './lib/generator'
 @generator = Generator.new
+@enigma = @generator.create_enigma
 
 handle = File.open(ARGV[0], 'r')
 
@@ -7,7 +8,7 @@ incoming_text = handle.read
 
 handle.close
 
-decryption_hash = @generator.enigma.decrypt(incoming_text, ARGV[2], ARGV[3])
+decryption_hash = @enigma.decrypt(incoming_text, ARGV[2], ARGV[3])
 
 writer = File.open(ARGV[1], 'w')
 

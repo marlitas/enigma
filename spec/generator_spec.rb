@@ -4,6 +4,7 @@ require './lib/generator'
 RSpec.describe Generator do
   before(:each) do
   @generator = Generator.new
+  @enigma = @generator.create_enigma
   end
 
   it 'exists' do
@@ -23,7 +24,7 @@ RSpec.describe Generator do
   end
 
   it 'can create enigma' do
-    expect(@generator.enigma).to be_a(Enigma)
+    expect(@enigma).to be_a(Enigma)
   end
 
   it 'can generate a random key' do
