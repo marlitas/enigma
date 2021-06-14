@@ -15,12 +15,8 @@ RSpec.describe Generator do
     expect(@generator.character_set).to eq(['a', 'b', 'c', 'd', "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "])
   end
 
-  it 'can create encrypt' do
-    expect(@generator.encrypt).to be_a(EncryptCode)
-  end
-
-  it 'can create decrypt' do
-    expect(@generator.decrypt).to be_a(DecryptCode)
+  it 'can create create a cipher' do
+    expect(@generator.cipher).to be_a(Cipher)
   end
 
   it 'can create enigma' do
@@ -31,8 +27,6 @@ RSpec.describe Generator do
     expect(@generator.key.length).to eq(5)
     expect(@generator.key).to be_a(String)
     expect(@generator.key).to_not eq(@generator.key)
-    #add test to ensure all characters are a number
-    #add test to ensure key can start with a 0
   end
 
   it 'can split key into groups' do
@@ -49,15 +43,15 @@ RSpec.describe Generator do
   end
 
   it 'can output hash with encryption' do
-    expect(@generator.encrypt_code({message: 'marla schulz', key: '13574', date: '061021'})).to eq({encryption: 'amyfplzxwfst', key: '13574', date: '061021'})
+    expect(@generator.encrypt({message: 'marla schulz', key: '13574', date: '061021'})).to eq({encryption: 'amyfplzxwfst', key: '13574', date: '061021'})
 
-    expect(@generator.encrypt_code({message: 'hello world', key: '02715', date: '040895'})).to eq({encryption: 'keder ohulw', key: '02715', date: '040895'})
+    expect(@generator.encrypt({message: 'hello world', key: '02715', date: '040895'})).to eq({encryption: 'keder ohulw', key: '02715', date: '040895'})
   end
 
   it 'can output hash with decryption' do
-    expect(@generator.decrypt_code({cipher: 'amyfplzxwfst', key: '13574', date: '061021'})).to eq({decryption: 'marla schulz', key: '13574', date: '061021'})
+    expect(@generator.decrypt({cipher: 'amyfplzxwfst', key: '13574', date: '061021'})).to eq({decryption: 'marla schulz', key: '13574', date: '061021'})
 
-    expect(@generator.decrypt_code({cipher: 'keder ohulw', key: '02715', date: '040895'})).to eq({decryption: 'hello world', key: '02715', date: '040895'})
+    expect(@generator.decrypt({cipher: 'keder ohulw', key: '02715', date: '040895'})).to eq({decryption: 'hello world', key: '02715', date: '040895'})
   end
 
   it 'can create a date in the proper format' do
