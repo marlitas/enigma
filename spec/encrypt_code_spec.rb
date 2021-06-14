@@ -18,17 +18,8 @@ RSpec.describe EncryptCode do
     expect(@encrypt.generator).to be_a(Generator)
   end
 
-  it 'can return modulo of shift values' do
-    expect(@encrypt.shift_modulo({A: 15, B: 39, C: 61, D: 75})).to eq({A: 15, B: 12, C: 7, D: 21})
-  end
-
   it 'can iterate through message to create encryption' do
-    expect(@encrypt.encrypt_message('marla schulz', @encrypt.shift_modulo({A: 15, B: 39, C: 61, D: 75}))).to eq('amyfplzxwfst')
-    expect(@encrypt.encrypt_message('hello world',@encrypt.shift_modulo({A: 3, B: 27, C: 73, D: 20}) )).to eq('keder ohulw')
-  end
-
-  it 'can iterate through message to create encryption, refactor' do
-    expect(@encrypt.encrypt_message_refactor('marla schulz', @encrypt.shift_modulo({A: 15, B: 39, C: 61, D: 75}))).to eq('amyfplzxwfst')
-    expect(@encrypt.encrypt_message_refactor('hello world',@encrypt.shift_modulo({A: 3, B: 27, C: 73, D: 20}) )).to eq('keder ohulw')
+    expect(@encrypt.encrypt_message('marla schulz', {A: 15, B: 39, C: 61, D: 75})).to eq('amyfplzxwfst')
+    expect(@encrypt.encrypt_message('hello world', {A: 3, B: 27, C: 73, D: 20})).to eq('keder ohulw')
   end
 end

@@ -4,33 +4,19 @@ class DecryptCode
     @generator = generator
   end
 
-  def shift_modulo(shift)
-    shift.each do |key, value|
-      if value > 27
-        shift[key] = value % 27
-      else
-        shift[key] = value
-      end
-    end
-  end
-
-  def decrypt_message(cipher, shift)
-    cipher_array = cipher.split("")
+  def decrypt_message(message, shift)
+    message_array = message.split("")
     reversed_char_set = @generator.character_set.reverse
     decrypted_array = []
-    round_counter = 0
-    until round_counter == cipher.length
-      shift.each do |key, value|
-        unless cipher_array[round_counter].nil?
-          if value == 27
-            decrypted_array << cipher_array[round_counter]
-          elsif (reversed_char_set.index(cipher_array[round_counter]) + value) > 26
-            decrypted_array << reversed_char_set[(reversed_char_set.index(cipher_array[round_counter]) + value) - 27]
-          else
-            decrypted_array << reversed_char_set[reversed_char_set.index(cipher_array[round_counter]) + value]
-          end
-        round_counter += 1
-        end
+    message_array.each_with_index do |character, index|
+      if (index % 4) == 0
+        decrypted_array << reversed_char_set.rotate(reversed_char_set.index(character))[shift[:A] % 27]
+      elsif (index % 4) == 1
+        decrypted_array << reversed_char_set.rotate(reversed_char_set.index(character))[shift[:B] % 27]
+      elsif (index % 4) == 2
+        decrypted_array << reversed_char_set.rotate(reversed_char_set.index(character))[shift[:C] % 27]
+      else
+        decrypted_array << reversed_char_set.rotate(reversed_char_set.index(character))[shift[:D] % 27]
       end
     end
     decrypted_array.join
