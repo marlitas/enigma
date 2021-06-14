@@ -7,7 +7,7 @@ class Enigma
   end
 
   def encrypt(message, key = @generator.key, date = @generator.create_date)
-    outgoing_hash = {message: message.chomp, key: key, date: date}
+    outgoing_hash = {message: message.chomp.downcase, key: key, date: date}
     @generator.encrypt(outgoing_hash)
   end
 
